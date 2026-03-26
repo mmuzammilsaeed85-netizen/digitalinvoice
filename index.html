@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software</title>
+</head>
+<body>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #eef3f7;
+      margin: 0;
+    }
+
+    .header {
+      background: linear-gradient(#6fa0c9, #4d7fa8);
+      color: white;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    .container {
+      padding: 15px;
+    }
+
+    .box {
+      background: #dfe8f1;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    label {
+      font-size: 13px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 6px;
+      margin-top: 3px;
+      margin-bottom: 10px;
+      border: 1px solid #aabbd0;
+      border-radius: 3px;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .col {
+      flex: 1;
+    }
+
+    .section-title {
+      background: linear-gradient(#6fa0c9, #4d7fa8);
+      color: white;
+      padding: 6px;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .btn {
+      padding: 10px;
+      background: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .btn-print {
+      background: #007bff;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="header">FBR Invoice Details</div>
+
+<div class="container" id="invoiceArea">
+
+  <!-- Top Section -->
+  <div class="box">
+    <div class="row">
+      <div class="col">
+        <label>Buyer Registration No.</label>
+        <input id="strn" type="text">
+      </div>
+
+      <div class="col">
+        <label>Buyer Name*</label>
+        <input id="buyer" type="text">
+      </div>
+
+      <div class="col">
+        <label>Buyer Type</label>
+        <select>
+          <option>Unregistered</option>
+          <option >Registered </option>
+          <option >Unregistered Distributor </option>
+          <option >Retail Consumer </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label>Invoice Type*</label>
+        <select>
+          <option>Sale Invoice</option>
+          <option value="">Debit Note</option>
+        </select>
+      </div>
+
+      <div class="col">
+        <label>Invoice No.</label>
+        <input id="invoiceNo" type="text">
+      </div>
+
+      <div class="col">
+        <label>Invoice Date*</label>
+        <input id="date" type="date">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label>Sale Origin Province</label>
+        <select>
+            <option>Punjab</option>
+             <option>Sindh</option>
+              <option>Khyber Pakhtunkhwa</option>
+               <option>Balochistan</option>
+                <option>Gilgit-baltistan</option>
+            <option value="">Azad Kashmir</option>
+        </select>
+      </div>
+
+      <div class="col">
+        <label>Destination of Supply*</label>
+        <select><option>Punjab</option>
+             <option>Sindh</option>
+              <option>Khyber Pakhtunkhwa</option>
+               <option>Balochistan</option>
+                <option>Gilgit-baltistan</option>
+            <option value="">Azad Kashmir</option></select>
+      </div>
+
+      <div class="col">
+        <label>Sale Type*</label>
+        <select><label>Sale Type*</label>
+  <option value="">Select</option>
+  <option value="75">Goods at standard rate (default)</option>
+  <option value="24">Goods at Reduced Rate</option>
+  <option value="80">Goods at zero-rate</option>
+  <option value="85">Petroleum Products</option>
+  <option value="62">Electricity Supply to Retailers</option>
+  <option value="129">SIM</option>
+  <option value="77">Gas to CNG stations</option>
+  <option value="122">Mobile Phones</option>
+  <option value="25">Processing/Conversion of Goods</option>
+  <option value="23">3rd Schedule Goods</option>
+  <option value="21">Goods (FED in ST Mode)</option>
+  <option value="22">Services (FED in ST Mode)</option>
+  <option value="18">Services</option>
+  <option value="81">Exempt goods</option>
+  <option value="82">DTRE goods</option>
+  <option value="132">Electric Vehicle</option>
+  <option value="134">Cement/Concrete Block</option>
+  <option value="84">Telecommunication services</option>
+  <option value="123">Steel melting and re-rolling</option>
+  <option value="125">Ship breaking</option>
+  <option value="115">Potassium Chlorate</option>
+  <option value="178">CNG Sales</option>
+  <option value="139">Goods as per SRO.297(I)/2023</option>
+  <option value="181">Toll Manufacturing</option>
+  <option value="138">Non-Adjustable Supplies</option>
+</select>
+    </div>
+  </div>
+
+  <!-- Item Detail -->
+  <div class="section-title">Item Detail</div>
+
+  <div class="box">
+<div class="ui-selectionmenu">
+  <label for="hsCode">HS Code Description:</label>
+  <select id="hsCode" name="hsCode" class="ui-selectionmenu-list">
+    <option value="0902.4090" title="0902.4090-COFFEE, TEA, MATE AND SPICES - TEA, WHETHER OR NOT FLAVOURED. - OTHER">
+      0902.4090 - COFFEE, TEA, MATE AND SPICES - TEA, WHETHER OR NOT FLAVOURED. - OTHER
+    <option value="6308.0000" title="6308.0000-OTHER MADE UP TEXTILE ARTICLES; SETS; WORN CLOTHING AND WORN TEXTILE ARTICLES; RAGS. - SETS CONSISTING OF WOVEN FABRIC AND YARN, WHETHER OR NOT WITH ACCESSORIES, FOR MAKING UP INTO RUGS, TAPESTRIES, EMBROIDERED TABLE CLOTHS OR SERVIETTES, OR SIMILAR TEXTILE ARTICLES">
+      6308.0000 - OTHER MADE UP TEXTILE ARTICLES; SETS; WORN CLOTHING AND WORN TEXTILE ARTICLES; RAGS. - SETS CONSISTING OF WOVEN FABRIC AND YARN, WHETHER OR NOT WITH ACCESSORIES, FOR MAKING UP INTO RUGS, TAPESTRIES, EMBROIDERED TABLE CLOTHS OR SERVIETTES, OR SIMILAR TEXTILE ARTICLES
+    </option>
+  </select>
+</div>
+<label for="hsCode">Production Description:</label>
+  <select id="hsCode" name="hsCode" class="ui-selectionmenu-list">
+    </option>
+    
+  </select>
+
+    <div class="row">
+      <div class="col">
+        <label>Rate</label>
+        <input id="rate" type="number">
+      </div>
+
+      <div class="col">
+        <label>UoM</label>
+        <input type="text">
+      </div>
+
+      <div class="col">
+        <label>Quantity</label>
+        <input type="number">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label>Value of Sales Excl. ST</label>
+        <input type="number" id="value">
+      </div>
+
+      <div class="col">
+        <label>Sales Tax (18%)</label>
+        <input type="number" id="tax" readonly>
+      </div>
+
+      <div class="col">
+        <label>Total Value</label>
+        <input type="number" id="total" readonly>
+      </div>
+      </div>
+      
+      </div>
+      <div class="col">
+        <label>Fixed / Notified value of Retail Price</label>
+        <input type="number"  readonly>
+      </div>
+      <div class="col">
+        <label>ST withheld at Source</label>
+        <input type="number"   readonly>
+      <div class="col">
+        <label>Extra Tax	</label>
+        <input type="number"   readonly>
+      </div>
+
+      <div class="col">
+        <label>Further Tax</label>
+        <input type="number"  readonly>
+      </div>
+      
+<div style="margin-top:20px; text-align:center;">
+  <label><b>QR Code</b></label>
+  <div id="qrcode"></div>
+</div>
+    </div>
+
+  </div>
+
+</div>
+
+<div style="text-align:center;">
+  <button class="btn" onclick="calculate()">Calculate</button>
+  <button class="btn btn-print" onclick="downloadPDF()">Download PDF</button>
+</div>
+<script>
+function calculate() {
+  let rate = document.getElementById("value").value;
+  let tax = rate * 0.18;
+  let total = parseFloat(rate) + tax;
+
+  document.getElementById("tax").value = tax.toFixed(2);
+  document.getElementById("total").value = total.toFixed(2);
+
+  generateQR(total);
+}
+
+// QR GENERATION
+function generateQR(total) {
+  let invoiceNo = document.querySelector("input[placeholder='Invoice No.']")?.value || "INV-" + Date.now();
+  let name = document.querySelectorAll("input")[1].value;
+
+  let data = `Invoice: ${invoiceNo}
+Name: ${name}
+Amount: PKR ${total}`;
+
+  document.getElementById("qrcode").innerHTML = "";
+
+  new QRCode(document.getElementById("qrcode"), {
+    text: data,
+    width: 120,
+    height: 120
+  });
+}
+
+// PRINT PDF
+function downloadPDF() {
+  window.generateInvoice();
+}
+</script>
+
+
+   <script src="try.js"></script>
+    <script src="main.js"></script>
+
+</body>
+</html>
